@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        great: ['Great Vibes', 'cursive'],
+        vibes: ['Great Vibes', 'cursive'],
         zentry: ["zentry", "sans-serif"],
         general: ["general", "sans-serif"],
         "circular-web": ["circular-web", "sans-serif"],

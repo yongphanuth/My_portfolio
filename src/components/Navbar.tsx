@@ -1,5 +1,5 @@
 import { useState } from "react";
-import React from "react";
+
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
@@ -15,9 +15,9 @@ const Navbar = () => {
   return (
     <div className="flex justify-between items-center w-full h-20 text-white fixed bg-black px-4 z-10">
       {/* Logo */}
-      <div>
-        <h1 className="text-4xl font-mono">Nuth</h1>
-      </div>
+      <h1 className="text-4xl font-serif font-bold">Nuth</h1>
+
+
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex">
