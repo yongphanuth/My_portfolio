@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
@@ -13,11 +12,12 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center w-full h-20 text-white fixed bg-black px-4 z-10">
+    <div className="flex justify-between items-center w-full h-[80px] text-white fixed bg-black px-4 z-50">
       {/* Logo */}
-      <h1 className="text-4xl font-serif font-bold">Nuth</h1>
-
-
+      <h1 className="text-4xl font-semibold text-white hover:text-cyan-400 transition-all duration-300 ease-in-out flex items-center space-x-2 cursor-pointer">
+        <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500">Nuth</span>
+        <span className="text-lg text-gray-300">ezzy</span>
+      </h1>
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex">
@@ -34,7 +34,9 @@ const Navbar = () => {
       {/* Mobile Menu Icon */}
       <div
         onClick={() => setNav(!nav)}
-        className="md:hidden cursor-pointer hover:scale-105 absolute right-4"
+        className="md:hidden cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out absolute right-4"
+        aria-label="Toggle menu"
+        role="button"
       >
         {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
       </div>
