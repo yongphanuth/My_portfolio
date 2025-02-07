@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+"use client";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const Portfolio = () => {
   const projects = [
@@ -8,7 +10,7 @@ const Portfolio = () => {
       imgSrc: "/img/portfolio.jpeg",
       description:
         "A personal portfolio website built with React.js, Next.js, and Tailwind CSS to showcase my skills and projects.",
-      link: "#",
+      link: "https://yknutezzy.netlify.app/",
     },
     {
       title: "Capstone Project",
@@ -36,19 +38,23 @@ const Portfolio = () => {
     },
   ];
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
   return (
-    <div className=" pt-20 relative bg-gradient-to-b from-black to-gray-800 text-white min-h-screen py-16 overflow-hidden">
-      {/* Smooth Background Animation */}
+    <div className="pt-20 relative bg-gradient-to-b from-black to-gray-800 text-white min-h-screen py-16 overflow-hidden">
+      {/* Background Animation */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-10 blur-3xl"
         animate={{ scale: [1, 1.5, 1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
-      
+
+      {/* Section Animation */}
       <motion.section
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1.2, ease: "easeInOut" }}
         className="container mx-auto px-6 relative z-10"
       >
         <h2 className="text-3xl font-bold text-center mb-8">Portfolio</h2>
@@ -56,45 +62,43 @@ const Portfolio = () => {
           A collection of my past projects and experiences showcasing my journey in web and software development.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-6 mt-10">
+        <div ref={ref} className="flex flex-wrap justify-center gap-6 mt-10">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{
-                duration: 0.6, // Slightly longer for smoother animation
+                duration: 0.8,
                 delay: index * 0.2,
-                ease: "easeOut", // Smoother easing function
+                ease: "easeOut",
               }}
               whileHover={{
-                scale: 1.05,
-                boxShadow: "0px 10px 25px rgba(255, 255, 255, 0.2)", // Slightly bigger shadow
-                transition: {
-                  scale: { type: "spring", stiffness: 200, damping: 15 }, // Smoother scale transition
-                  boxShadow: { duration: 0.3 }, // Smooth shadow transition
-                },
+                scale: 1.02, // 🔹 Smaller hover scale (1.03 → 1.02)
+                boxShadow: "0px 8px 20px rgba(255, 255, 255, 0.1)",
+                transition: { duration: 0.1, ease: "easeOut" }, // 🔹 Quicker hover effect
               }}
-              className="bg-gray-900 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 w-72"
+              whileTap={{ scale: 0.98 }}
+              className="bg-gray-900 p-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-100 w-72"
             >
               <a href={project.link} className="block">
                 <motion.img
                   src={project.imgSrc}
                   alt={project.title}
                   className="object-cover w-full h-40 rounded-md"
-                  whileHover={{ scale: 1.02 }} // Make image scale smoothly
-                  transition={{
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 15,
-                    duration: 0.4, // Smooth image scale transition
-                  }}
+                  whileHover={{ scale: 1.02 }} // 🔹 Less intense zoom effect
+                  transition={{ duration: 0.1, ease: "easeOut" }} // 🔹 Instant image zoom
                 />
               </a>
-              <span className="block mt-3 text-xs font-semibold text-gray-400 uppercase">{project.date}</span>
+              <span className="block mt-3 text-xs font-semibold text-gray-400 uppercase">
+                {project.date}
+              </span>
               <p className="mt-1 text-lg font-semibold text-white">{project.title}</p>
               <p className="text-sm text-gray-400">{project.description}</p>
-              <a href={project.link} className="text-blue-500 font-semibold hover:text-blue-400 text-sm mt-2 inline-block">
+              <a
+                href={project.link}
+                className="text-blue-500 font-semibold hover:text-blue-400 text-sm mt-2 inline-block"
+              >
                 View Project →
               </a>
             </motion.div>

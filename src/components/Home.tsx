@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Home = () => {
   return (
-    <div className="h-screen w-full bg-gradient-to-b from-black to-gray-800"> {/* Reversed gradient */}
+    <div className="h-screen w-full bg-gradient-to-b from-black to-gray-800 pt-20"> {/* Reversed gradient */}
       <div className="max-w-screen-lg mx-auto flex flex-col-reverse md:flex-row items-center justify-between h-full px-6">
         {/* Left Section - Text */}
         <div className="text-center md:text-left flex flex-col justify-center h-full">

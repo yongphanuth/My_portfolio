@@ -5,6 +5,8 @@ import Home from './components/Home';
 import SocailLinks from './components/SocailLinks';
 import About from './components/About';
 import Portfolio from './components/Portfolio';
+import Experience from './components/Experience';
+import Education from './components/Education';
 const App = () => {
   return (
     <div className=''>
@@ -15,8 +17,8 @@ const App = () => {
       <Home/>
       <About/> 
       <Portfolio/>
-
-
+      <Experience/>
+      <Education/>
       <SocailLinks/>
   
   </div>
